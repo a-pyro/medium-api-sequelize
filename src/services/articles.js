@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { Article } from '../db/index.js';
 
 const router = Router();
 
@@ -9,9 +10,15 @@ router.get('/', async (req, res, next) => {
     console.log(error);
   }
 });
-router.post('/', async (req, res, next) => {
+
+router.post('/:authorId/:categoryId', async (req, res, next) => {
   try {
-    res.status(200).send('HI!');
+    const newArticle = await Article.create({
+      ...req.body,
+      authorId: req.params.authorId,
+      categoryId: req.params.categoryId,
+    });
+    res.status(200).send(newArticle);
   } catch (error) {
     console.log(error);
   }

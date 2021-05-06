@@ -1,7 +1,7 @@
 import sequelize from 'sequelize';
 const { Sequelize, DataTypes } = sequelize;
 
-const db = new Sequelize(
+export const db = new Sequelize(
   process.env.PGDATABASE,
   process.env.PGUSER,
   process.env.PGPASSWORD,

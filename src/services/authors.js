@@ -13,12 +13,15 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
+    await Author.destroy({ where: { id: req.params.id } });
+    res.status(200).send({ message: 'destroyed' });
   } catch (error) {
     console.log(error);
   }
 });
+
 router.post('/', async (req, res, next) => {
   try {
   } catch (error) {
